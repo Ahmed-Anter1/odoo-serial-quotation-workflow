@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_order_form_portfolio_serials" model="ir.ui.view">
+    <field name="name">sale.order.form.portfolio.serials</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='order_line']/list/field[@name='product_uom_qty']" position="after">
+        <field name="requires_serial" column_invisible="True"/>
+        <field name="quotation_lot_ids"
+               widget="many2many_tags"
+               optional="show"
+               invisible="not requires_serial"
+               domain="[('product_id', '=', product_id)]"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>
